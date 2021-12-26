@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "funky"
+name = "python_funky"
 version = "0.1.0"
 description = ""
 authors = ["Arwalk <siragentprovocateurarwalk@gmail.com>"]

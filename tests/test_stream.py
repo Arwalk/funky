@@ -1,4 +1,4 @@
-from funky.Stream import Stream
+from python_funky.Stream import Stream
 
 
 def test_map():
