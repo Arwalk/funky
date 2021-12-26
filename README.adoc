@@ -1,0 +1,7 @@
+= Funky, functional programming tools for Python
+
+Python's imperative and orient object nature does not always make it easy to adopt a functional programming mindset.
+
+Sure, it does have `map` and `filter` as built-in functions, but it's hardly enough, and relies on keeping intermediate variables to chain easily.
+
+This simple library aims at providing simple tools allowing to chain transformations on iterable objects and maintaining readability at the core of your code.
