@@ -26,8 +26,4 @@ class Pipeline:
         return self.then(reduce, acc, fun)
 
     def get(self):
-        val = reduce(self._operations, self._start_value, lambda op, acc: op(acc))
-        try:
-            return [x for x in val]
-        except:
-            return val
+        return reduce(self._operations, self._start_value, lambda op, acc: op(acc))

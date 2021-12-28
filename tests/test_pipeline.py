@@ -4,7 +4,7 @@ from python_funky.standalone import reduce, each
 
 def test_pipeline_map():
     result = Pipeline([1, 2, 3]) \
-        .map(lambda x: x * 2).get()
+        .map(lambda x: x * 2).then(list).get()
     assert result == [2, 4, 6]
 
 
