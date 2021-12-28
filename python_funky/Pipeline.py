@@ -8,12 +8,11 @@ class Pipeline:
     }
 
     def __init__(self, start) -> None:
-        self._start_value = start
-        self._operations = []
+        self._current = start
 
     def then(self, fun, *args) -> 'Pipeline':
         fun = self._auto_transform.get(fun, fun)
-        self._operations.append(lambda x: fun(x, *args))
+        self._current = fun(self._current, *args)
         return self
 
     def map(self, fun) -> 'Pipeline':
@@ -29,4 +28,4 @@ class Pipeline:
         return self.then(each, fun)
 
     def get(self):
-        return reduce(self._operations, self._start_value, lambda op, acc: op(acc))
+        return self._current
