@@ -1,7 +1,40 @@
 = Funky, functional programming tools for Python
 
-Python's imperative and orient object nature does not always make it easy to adopt a functional programming mindset.
+Python's imperative and object oriented nature does not always make it easy to adopt a functional programming mindset.
 
 Sure, it does have `map` and `filter` as built-in functions, but it's hardly enough, and relies on keeping intermediate variables to chain easily.
 
-This simple library aims at providing simple tools allowing to chain transformations on iterable objects and maintaining readability at the core of your code.
+This simple library aims at providing simple tools allowing to chain transformations on values and maintaining readability at the core of your code.
+
+== Installation
+
+`pip install python_funky` or, add  `python_funky` to your dependencies.
+
+== Usage
+
+The main tool of this package is the Pipeline object. This objects is meant to be ephemeral and used to chain operations on another value.
+
+[source,python]
+----
+from python_funky.Pipeline import Pipeline
+
+intermediates = []
+
+result = Pipeline([1, 2, 3]) \
+    .map(lambda x: x * x) \
+    .filter(lambda x: x % 2 != 0) \
+    .each(lambda x: intermediates.append(x)) \
+    .reduce(0, lambda x, acc: x + acc) \
+    .then(lambda x: range(0, x)) \
+    .then(sum) \
+    .get()
+
+assert result == 45
+assert intermediates == [1, 9]
+----
+
+== Limitations
+
+Python uses object references everywhere. If the function you pass as parameters tend to have side effects, the library won't help you avoid them.
+
+Keep this in mind when composing your operations and functions, do as much pure functions as you can, everything should be fine.
