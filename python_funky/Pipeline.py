@@ -1,4 +1,4 @@
-from .standalone import reduce, map, filter, _builtin_map, _builtin_filter
+from .standalone import reduce, map, filter, _builtin_map, _builtin_filter, each
 
 
 class Pipeline:
@@ -24,6 +24,9 @@ class Pipeline:
 
     def reduce(self, acc, fun) -> 'Pipeline':
         return self.then(reduce, acc, fun)
+
+    def each(self, fun) -> 'Pipeline':
+        return self.then(each, fun)
 
     def get(self):
         return reduce(self._operations, self._start_value, lambda op, acc: op(acc))

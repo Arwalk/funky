@@ -22,7 +22,7 @@ def test_pipeline_full():
     result = Pipeline([1, 2, 3]) \
         .then(map, lambda x: x * x) \
         .then(filter, lambda x: x % 2 != 0) \
-        .then(each, lambda x: intermediates.append(x)) \
+        .each(lambda x: intermediates.append(x)) \
         .then(reduce, 0, lambda x, acc: x + acc) \
         .then(lambda x: range(0, x)) \
         .then(sum) \
