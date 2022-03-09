@@ -14,7 +14,7 @@ class Pipeline:
     def __init__(self, start) -> None:
         self._current = start
 
-    def then(self, fun, *args) -> 'Pipeline':
+    def then(self, fun, *args, **kwargs) -> 'Pipeline':
         """
         This method will apply the function fun to the current value
         held by the Pipeline object.
@@ -30,7 +30,7 @@ class Pipeline:
         :return: the updated pipeline object itself.
         """
         fun = self._auto_transform.get(fun, fun)
-        self._current = fun(self._current, *args)
+        self._current = fun(self._current, *args, **kwargs)
         return self
 
     def map(self, fun) -> 'Pipeline':
