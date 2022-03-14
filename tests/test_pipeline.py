@@ -29,3 +29,10 @@ def test_pipeline_full():
         .get()
     assert result == 45
     assert intermediates == [1, 9]
+
+
+def test_pipeline_with_kwargs():
+    result = Pipeline([1, 2, 3])\
+        .then(sorted, reverse=True)\
+        .get()
+    assert result == [3, 2, 1]
